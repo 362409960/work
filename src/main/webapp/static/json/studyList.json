@@ -1,0 +1,22 @@
+{
+    "studyList": [
+        {
+            "patientName" : "CT1",
+            "patientId" : "832040",
+            "studyDate" : "20150105",
+            "modality" : "CT",
+            "studyDescription" :"CHEST",
+            "numImages" : 4,
+            "studyId" : "ctstudy"
+        },
+        {
+            "patientName" : "CT2",
+            "patientId" : "2178309",
+            "studyDate" : "20150105",
+            "modality" : "CT",
+            "studyDescription" :"CHEST",
+            "numImages" : 2,
+            "studyId" : "crstudy"
+        }
+    ]
+}

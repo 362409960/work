@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.ub.dao.patient.CaseInfoDAO">
+
+	<resultMap id="resultMap" type="com.cn.ub.entry.patient.CaseInfo">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+		<result column="patinet_no" property="patinetNo" jdbcType="VARCHAR" />
+		<result column="hospital" property="hospital" jdbcType="VARCHAR" />
+		<result column="hospital_no" property="hospitalNo" jdbcType="VARCHAR" />
+		<result column="check_parts" property="checkParts" jdbcType="VARCHAR" />
+		<result column="check_type" property="checkType" jdbcType="VARCHAR" />
+		<result column="clinic_number" property="clinicNumber" jdbcType="VARCHAR" />
+		<result column="report_doctor" property="reportDoctor" jdbcType="VARCHAR" />
+		<result column="report_state" property="reportState" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+		<result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+		<result column="application_time" property="applicationTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<!-- 通过对象查询用户 -->
+	<select id="getList" parameterType="com.cn.ub.entry.patient.CaseInfo" resultMap="resultMap">
+		SELECT * FROM d_case_info WHERE 
+		<if test="null != patientName and patientName !=  ''">
+			AND patient_name = #{patientName}
+		</if>
+		<if test="null != patinetNo and patinetNo !=  ''">
+			AND patinet_no = #{patinetNo}
+		</if>
+		<if test="null != hospital and hospital !=  ''">
+			AND hospital = #{hospital}
+		</if>
+		<if test="null != checkParts and checkParts !=  ''">
+			AND check_parts = #{checkParts}
+		</if>
+		<if test="null != checkType and checkType !=  ''">
+			AND check_type = #{checkType}
+		</if>
+		<if test="null != clinicNumber and clinicNumber !=  ''">
+			AND clinic_number = #{clinicNumber}
+		</if>
+		<if test="null != reportDoctor and reportDoctor !=  ''">
+			AND report_doctor = #{reportDoctor}
+		</if>
+		<if test="null != reportState and reportState !=  ''">
+			AND report_state = #{reportState}
+		</if>
+		<if test="null != startTime and startTime !=  ''">
+		<![CDATA[ and DATE_FORMAT(a.application_time, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="null != endDate and endDate !=  ''">
+		<![CDATA[ and DATE_FORMAT(a.application_time, '%Y-%m-%d') <= DATE_FORMAT(#{endDate}, '%Y-%m-%d')]]>
+		</if>
+	</select>
+	<!-- 更新用户 -->
+	<update id="update" parameterType="com.cn.ub.entry.patient.CaseInfo">
+		UPDATE d_case_info
+		<set>
+			<if test="null != patientName">
+				patient_name = #{patientName},
+			</if>
+			<if test="null != reportState">
+				report_state = #{reportState},
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<!-- 查询所有有效的用户 -->
+	<select id="getObjById" parameterType="java.lang.String" resultType="com.cn.ub.entry.patient.CaseInfo">
+		select * from d_case_info where id = #{id} 
+	</select>
+
+
+	<!-- 新增一条广告信息 -->
+	<insert id="save" parameterType="com.cn.ub.entry.patient.CaseInfo">
+		INSERT d_case_info
+		(id,patient_name,patinet_no,hospital,hospital_no,check_parts,check_type,clinic_number,report_doctor,report_state,age,sex,check_time,report_time,application_time)values
+		(#{id},#{patientName},#{patinetNo},#{hospital},#{hospitalNo},#{checkParts},#{checkType},#{clinicNumber},#{reportDoctor},#{reportState},#{age},#{sex},#{checkTime},#{reportTime},#{applicationTime})
+	</insert>
+	
+	<!-- 根据id，删除用户信息 -->
+   <delete id = "deleteById"  parameterType="string">
+            delete d_case_info  where id = #{id}
+   </delete>
+    
+
+
+</mapper>
