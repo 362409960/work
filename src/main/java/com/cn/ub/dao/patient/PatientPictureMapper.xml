@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.ub.dao.patient.CPatientPictureDAO">
+
+	<resultMap id="resultMap" type="com.cn.ub.entry.patient.PatientPicture">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="pic_id" property="picId" jdbcType="VARCHAR" />
+		<result column="case_id" property="caseId" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updatetime" jdbcType="TIMESTAMP" />
+		
+	</resultMap>
+
+
+	<select id="getList" parameterType="com.cn.ub.entry.patient.PatientPicture" resultMap="resultMap">
+		SELECT * FROM d_patient_picture WHERE 
+		<if test="null != picId and picId !=  ''">
+			AND pic_id = #{caseId}
+		</if>
+		<if test="null != caseId and caseId !=  ''">
+			AND case_id = #{caseId}
+		</if>
+		
+	
+	</select>
+	
+
+	<select id="getObjById" parameterType="java.lang.String" resultType="com.cn.ub.entry.patient.PatientPicture">
+		select * from d_patient_picture where case_id = #{id} 
+	</select>
+
+
+	
+	<insert id="save" parameterType="com.cn.ub.entry.patient.PatientPicture">
+		INSERT d_patient_picture
+		(id,pic_id,case_id,state,create_time,update_time)values
+		(#{id},#{picId},#{caseId},#{state},#{createTime},#{updatetime})
+	</insert>
+
+   <delete id = "deleteById"  parameterType="string">
+            delete d_patient_picture  where case_id = #{id}
+   </delete>
+    
+
+
+</mapper>
