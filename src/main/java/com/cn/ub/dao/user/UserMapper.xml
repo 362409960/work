@@ -19,6 +19,9 @@
 		<if test="null != username and username !=  ''">
 			AND USERNAME = #{username}
 		</if>
+		<if test="null != userType and userType !=  ''">
+			AND user_type = #{userType}
+		</if>
 	</select>
 	<!-- 更新用户 -->
 	<update id="update" parameterType="com.cn.ub.entry.user.User">
@@ -35,11 +38,11 @@
 	</update>
 
 	<!-- 查询所有有效的用户 -->
-	<select id="getObjById" parameterType="java.lang.String" resultType="com.cn.ub.entry.user.User">
+	<select id="getObjById" parameterType="java.lang.String" resultMap="resultMap">
 		select * from D_USER where id = #{id} and STATE = '0'
 	</select>
 	
-	<select id="getUser" parameterType="java.lang.String" resultType="com.cn.ub.entry.user.User">
+	<select id="getUser" parameterType="java.lang.String" resultMap="resultMap">
 		select * from D_USER where USERNAME = #{username} and STATE = '0'
 	</select>
 

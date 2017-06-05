@@ -1,0 +1,303 @@
+@charset "utf-8";
+/* CSS Document */
+@import url('common.css');
+.header{
+	background-color:#fff;
+	position:relative;
+	/* background:url(../images/logo.png) no-repeat 20px 10px; */
+}
+.top{
+	padding:15px 0;
+	border-bottom:solid 1px #ccc;
+	box-shadow:0 0 5px #666;
+	-webkit-box-shadow:0 0 5px #666;
+}
+/*.top-left > a{
+	font-size:18px;
+	color:#505050;
+	padding-left:60px;
+	background:url(../images/logo.png) no-repeat -60px center;
+}
+.top-left > a > img{
+	padding-left:10px;
+}*/
+.path{
+	background-color:#f0f1f5;
+	height:40px;
+	line-height:40px;
+	padding-left:200px;
+	margin-top:3px;
+	font-size:16px;
+}
+.path > img{
+	padding-right:5px;
+}
+.path > a{
+	color:#4c4c4c;
+}
+.list li a{
+	display:block;
+	height:30px;
+	line-height:30px;
+	width:100%;
+	font-size:14px;
+	padding-left:10px;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+.list li a:hover{
+	background-color:#999;
+	color:#fff
+}
+.top-right ul li{
+	display:inline-block;
+	height:30px;
+	line-height:30px;
+	border-right:solid 1px #c1c1c1;
+	padding:0 12px;
+	font-size:18px;
+	color:#4c4c4c;
+}
+.top-right ul li .l-btn-text{
+	font-size:18px;
+	color:#4c4c4c;
+	font-weight:normal;
+}
+.top-right ul li:last-child{
+	border-right:none;
+}
+.logo{
+	padding-right:10px;
+}
+.icon-basic{
+	/* background:url(../images/icon.png) no-repeat center center; */
+	background-size:100% 100%;
+}
+.pad10{
+	padding:10px;
+}
+.padtl10{
+	padding:10px 0;
+}
+.fullwidth{
+	width:100%;
+}
+.panel-title{
+	font-size:18px;
+	height:20px;
+	line-height:20px;
+}
+.panel-header .panel-title{
+	font-size:16px;
+}
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber{
+	font-size:14px;
+}
+.wrap, .data-list {
+	padding: 20px 0 0 20px;
+}
+.form-control {
+	padding: 10px;
+}
+.form-control label {
+	float: left;
+	padding-right: 20px;
+	font-size: 16px;
+}
+.form-control label.labelPad{
+	width:100px;
+	text-align: right;
+}
+.inp {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: solid 1px #dfdfdf;
+	padding: 5px 10px;
+	outline: none;
+	width: 180px;
+	font-size: 14px
+}
+.select {
+	height: 30px;
+	line-height: 30px;
+	border: solid 1px #dfdfdf;
+	outline: none;
+	width: 200px;
+	font-size: 14px
+}
+.form-control td {
+	padding: 10px;
+	border: solid 1px #dfdfdf;
+	font-size: 14px
+}
+.form-control div.imgMessage{
+	font-size:16px!important;
+	padding-left:120px;
+}
+.mar-t50 {
+	margin-top: 50px;
+}
+.table-01 {
+	width: 850px;
+}
+.table-01 td {
+	padding: 10px;
+	border: none;
+}
+
+.table-01 label {
+	display: inline-block;
+	width: 80px;
+	padding-left: 25px;
+	font-size: 14px;
+	cursor: pointer
+}
+.table-01 th{
+	 font-size: 16px;
+     font-weight: normal;
+     width: 110px;
+}
+.table-01 th.thPad{
+	padding-right:12px;
+	 width: 80px;
+}
+label input[type='checkbox'] {
+	opacity: 0;
+	cursor: pointer
+}
+label.checkbox {
+	background-image: url(../images/icon-2.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+label.checkbox.checked {
+	background-image: url(../images/icon-1.png);
+}
+label.checkbox.disabled {
+	background-image: url(../images/icon-3.png);
+}
+.data-list td {
+	width: 100px;
+	text-align: center;
+	padding: 5px 10px;
+	border: solid 1px #dfdfdf;
+	font-size: 14px;
+}
+.hidden, thead td:empty {
+	display: none;
+}
+table.item{
+	width:100%;
+}
+table.item td,table.item th{
+	padding:10px;
+	border-bottom:solid 1px #dedede;
+	text-align: center;
+	font-size: 14px;
+}
+table.item th{
+	font-size: 16px;
+	font-weight: normal;
+}
+table.item td[colspan='4']{
+	text-align: left;
+}
+table.item td[colspan] a,.table-01 caption{
+	display:inline-block;
+	width:100px;
+	height:30px;
+	line-height:30px;
+	text-align: center;
+	background-color:#5fc9f8;
+	color:#fff;
+	font-size:14px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}
+.table-01 caption{
+	margin: 10px 0;
+}
+table.item th{
+	text-align:center;
+}
+#sortPty td{
+	border: none;
+}
+#sortPty th{
+	font-size: 16px;
+	font-weight: normal;
+	text-align: right;
+}
+#spec td{
+	padding: 10px;
+	font-size: 14px;
+	border: solid 1px #dedede;
+}
+.wrap .aChoice{
+	left:115px!important;
+}
+.wrap .imgBox{
+	width:143px!important;
+	height:143px!important;
+	border:1px solid #ddd;
+	display:inline-block;
+}
+#divPreview .imgBox{
+	width:143px!important;
+	height:143px!important;
+	border:1px solid #ddd;
+	display:inline-block;
+}
+
+.wrap .addPad{
+	margin-top:135px!important;
+}
+
+/***修改密码弹出框样式****/
+.detailTable{
+	width:400px;
+	height:200px;
+	margin:0 auto; 
+	margin-top:50px;
+	margin-left:20px;
+}
+.detailTable tr td:first-child{
+	width:150px;
+	text-align:center;
+	line-height:40px;
+	font-size:16px;
+}
+.detailTable tr td input{
+	width:250px;
+	height:40px;
+	line-height:40px;
+	border-radius:5px;
+	box-sizing:border-box;
+}
+.detailTable tr td input[type="button"]{
+	text-align:center;
+	margin:0 auto;
+	border-radius:5px;
+	line-height:28px;
+}
+#set{
+    display: none;
+}
+.easyui-menubutton{
+	font-size: 18px!important;
+    color: #4c4c4c!important;
+    font-weight: normal!important;
+}
+/* .padtl10 ul li{
+	display: none;
+}
+ */
+ #divPreview .addImg{
+	width:143px;
+	height:143px;
+	border:1px solid #dfdfdf;
+	display:block;
+}

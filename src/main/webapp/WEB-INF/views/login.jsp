@@ -20,7 +20,7 @@
 
 <script type="text/javascript" src="<%=path%>/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/placeholder.js"></script>
- <script src="<%=path %>/static/layer/layer.js"></script>
+ <script src="<%=path %>/static/js/layer/layer.js"></script>
 
 <script type="text/javascript">
 	if(top != self) {  
@@ -70,14 +70,14 @@ a.green:hover, a.green:active {
 </style>
 
 
-<title>登录-广告系统</title>
+<title>登录-医疗系统</title>
 </head>
 
 <body>
     <div class="top">
-    	<div class="logo">
-    	    <img alt="logo" src="<%=path%>/static/images/login/cloudring.png">
-        </div>
+    	<%-- <div class="logo">
+    	     <img alt="logo" src="<%=path%>/static/images/login/cloudring.png">
+        </div> --%>
     </div>
     <div class="login">
     	<div class="login-sider">
@@ -95,26 +95,12 @@ a.green:hover, a.green:active {
                     <input type="hidden" id="password" name= "password" />
                 </p>
                 
-              <%--   <p>
-                	<label for="passcode">验证码</label>
-                    
-                    <span class="wrap-verify">
-                        <input id="passcode" name="passcode" class="inp-01 code" maxlength="4" value="" autocomplete="off"  type="text"  placeholder="验证码">
-					    <s></s>
-					</span>
-					
-                    <input type="hidden" id="yzCode_verify_flag" name= "yzCode_verify_flag" />
-                    
-                     <img id="codeimg" src="<%=path%>/RandImage" alt="验证码" class="l" onclick="reload();return false;" height="30" width="70">
-                </p> --%>
-                
-                
                 <div class="clearfix"></div>
-                <p class="c-box">
-                    <!-- <input id="cookieslogin" name="cookieslogin" value="1" checked="checked" autocomplete="off" type="checkbox"> -->
-                </p>
+               <!--  <p class="c-box">
+                  <input id="cookieslogin" name="cookieslogin" value="1" checked="checked" autocomplete="off" type="checkbox"> 
+                </p> -->
                 <p><input type="button" value="登录" class="login-btn" id="dlBtn" name="login"></p>
-                <!-- <p><a href="javascript:void(0)">忘记密码?</a></p> -->
+                <p><a href="javascript:void(0)">忘记密码?</a></p> 
             </form>
         </div>
     </div>
@@ -139,44 +125,7 @@ $(function(){
 
 <script>
 
-<%-- $(document).ready(function(){
-	$("#passcode").keyup(function(e){
-		 var $keyCode=e.keyCode;
-		 $("s").css("display","none");
-		  var passcode = $("#passcode").val();
-		  var upper = passcode.toUpperCase();
-		 
-		  var len = passcode.length;
-		  if(len == 4){
-			  $.ajax({
-	       			url: "<%=path %>/sys/ajaxVerifyYzCode?passcode="+passcode,
-	       		 	type: "GET",
-	       		 	cache:false,
-	       		 	async:true,
-	       		 	dataType: "json",
-	       		    success:function(jsonData, textStatus) {
-	    				if(jsonData.success == 'true'){ 
-	    					$("s").removeClass("error");	    					
-	    					$("s").css("display","inline");
-	    					$("s").addClass("");
-	    					$("#yzCode_verify_flag").val("true");
-	    				}else if(jsonData.success == 'false'){
-	    					$("s").css("display","inline");
-	    					$("s").addClass("error");
-	    					$("#yzCode_verify_flag").val("false");
-	    				}
-	    	   		},
-	    	   		error:function(textStatus, errorThrown){
-	    	   			layer.alert('系统ajax交互错误: ' + errorThrown, {icon:5,title:'提示'});
-	    	   		}
-	            });
-		  }
-		  if($keyCode>=37 && $keyCode<=40){
-		  	return false;
-		  }  
-		  $("#passcode").val(upper); 
-	}); --%>
-	
+ $(document).ready(function(){
 	//键盘点击Enter键提交页面
 	$(document).keydown(function(event) {
 		if (event.keyCode == 13) {
@@ -210,33 +159,25 @@ $(function(){
     		return false;
     	}
     	
-    	/* var yzCode_verify_flag = $("#yzCode_verify_flag").val();
-		if(yzCode_verify_flag == null || yzCode_verify_flag == undefined || yzCode_verify_flag == '' || yzCode_verify_flag == 'false' ){
-			layer.alert('请输入正确的验证码', {icon:5,title:'提示'});
-			$("#passcode").focus();
-			return false;
-		} */
 		
 		var temp = $.md5(tempPassword);
 		$("#password").val(temp);
 
 		$.ajax({
-   			url: "<%=path %>/sys/login",
+   			url: "<%=path %>/login",
    		 	type: "POST",
    		 	cache:false,
    		 	async:true,
    		 	dataType: "json",
    		    data: {"name":name, "password":temp},
    		    success:function(jsonData, textStatus) {
-   		    	if(jsonData.success == 'true'){
-					var _expires = 1;
-					if($("#cookieslogin").is(':checked')){
+   		    	if(jsonData.flag == 'true'){
+					//var _expires = 1;
+					/* if($("#cookieslogin").is(':checked')){
 						_expires = 30;
-					}
-					
-					
-					refurbish();
-				}else if(jsonData.success == 'none'){
+					} */
+					refurbish(jsonData.code);
+				}else if(jsonData.flag == 'false'){
 					layer.alert('用户代码或密码错误.', {icon:5,title:'提示'});
 					$("#name").focus();
 				}else{
@@ -250,15 +191,9 @@ $(function(){
 		
     });
     
-    
-    
 });
 
-function reload() {
-    var verifyCodeImageUrl = '<%=path%>/RandImage?';
-	$("#codeimg").attr("src", verifyCodeImageUrl + (new Date()).getTime());
-   // $('#passcode').val('').focus().next().hide();
-}
+
 
 function wjmm(){
 	window.location.href='<%=path%>/sys/loginInit';
@@ -269,8 +204,8 @@ String.prototype.Trim = function() {
 }
 
 //刷新当前页面(ajax返回时候)
-function refurbish(){	
-	window.location.href='<%=path%>/hs/index';
+function refurbish(id){	
+	window.location.href='<%=path%>/toIndex?code='+id;
 };
 </script>
 
