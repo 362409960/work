@@ -70,6 +70,11 @@ public class CaseInfo implements Serializable{
 	 */
 	private Date applicationTime;
 	
+	
+	private String startTime;
+	
+	private String endDate;
+	
 	public String getId() {
 		return id;
 	}
@@ -159,6 +164,18 @@ public class CaseInfo implements Serializable{
 	}
 	public void setApplicationTime(Date applicationTime) {
 		this.applicationTime = applicationTime;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
 	

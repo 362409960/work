@@ -39,4 +39,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getObjById(id);
 	}
 
+	@Override
+	public User getUser(String username) throws Exception {
+		
+		return userDAO.getUser(username);
+	}
+
 }

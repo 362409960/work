@@ -38,6 +38,10 @@
 	<select id="getObjById" parameterType="java.lang.String" resultType="com.cn.ub.entry.user.User">
 		select * from D_USER where id = #{id} and STATE = '0'
 	</select>
+	
+	<select id="getUser" parameterType="java.lang.String" resultType="com.cn.ub.entry.user.User">
+		select * from D_USER where USERNAME = #{username} and STATE = '0'
+	</select>
 
 
 	<!-- 新增一条广告信息 -->

@@ -4,5 +4,6 @@ import com.cn.ub.dao.BaseDAO;
 import com.cn.ub.entry.user.User;
 
 public interface UserDAO extends BaseDAO<User> {
+	User getUser(String username)throws Exception;
 
 }
