@@ -7,22 +7,28 @@
 		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
 		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
 		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="upate_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 
 	<!-- 通过对象查询用户 -->
 	<select id="getList" parameterType="com.cn.ub.entry.user.User"
 		resultMap="resultMap">
-		SELECT * FROM ST_USER WHERE STATE = '0'
+		SELECT * FROM D_USER WHERE STATE = '0'
 		<if test="null != username and username !=  ''">
 			AND USERNAME = #{username}
 		</if>
 	</select>
 	<!-- 更新用户 -->
 	<update id="update" parameterType="com.cn.ub.entry.user.User">
-		UPDATE ST_USER
+		UPDATE D_USER
 		<set>
 			<if test="null != state">
 				STATE = #{state},
+			</if>
+			<if test="null != updateTime">
+				upate_time = #{updateTime,jdbcType=TIMESTAMP},
 			</if>
 		</set>
 		WHERE ID = #{id}
@@ -30,19 +36,19 @@
 
 	<!-- 查询所有有效的用户 -->
 	<select id="getObjById" parameterType="java.lang.String" resultType="com.cn.ub.entry.user.User">
-		select * from ST_USER where id = #{id} and STATE = '0'
+		select * from D_USER where id = #{id} and STATE = '0'
 	</select>
 
 
 	<!-- 新增一条广告信息 -->
 	<insert id="save" parameterType="com.cn.ub.entry.user.User">
-		INSERT ST_USER
-		(id,username,password,state)values(#{id},#{username},#{password},#{state})
+		INSERT D_USER
+		(id,username,password,state,user_type,create_time)values(#{id},#{username},#{password},#{state},#{state},#{userType},now())
 	</insert>
 	
 	<!-- 根据id，删除用户信息 -->
    <update id = "deleteById"  parameterType="string">
-            update ST_USER set disabled = '1'  where id = #{id}
+            update D_USER set disabled = '1'  where id = #{id}
    </update>
     
 

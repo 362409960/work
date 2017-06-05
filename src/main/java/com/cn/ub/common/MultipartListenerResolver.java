@@ -16,37 +16,34 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-
-
-
 public class MultipartListenerResolver extends CommonsMultipartResolver {
-	
-private HttpServletRequest request;
-	
-    protected FileUpload newFileUpload(FileItemFactory fileItemFactory) {  
-        ServletFileUpload upload = new ServletFileUpload(fileItemFactory);  
-        upload.setSizeMax(-1);  
-        if (request != null) {  
-        	HttpSession session = request.getSession();
-        	FileUploadProgressListener progressListener = new FileUploadProgressListener(session);
-            upload.setProgressListener(progressListener);  
-        }  
-        return upload;  
-    }  
-    
-    public MultipartHttpServletRequest resolveMultipart(HttpServletRequest request) throws MultipartException {  
-    	// 获取到request,要用到session  
-        this.request = request;
-        return super.resolveMultipart(request);  
-    }  
-	
+
+	private HttpServletRequest request;
+
+	protected FileUpload newFileUpload(FileItemFactory fileItemFactory) {
+		ServletFileUpload upload = new ServletFileUpload(fileItemFactory);
+		upload.setSizeMax(-1);
+		if (request != null) {
+			HttpSession session = request.getSession();
+			FileUploadProgressListener progressListener = new FileUploadProgressListener(session);
+			upload.setProgressListener(progressListener);
+		}
+		return upload;
+	}
+
+	public MultipartHttpServletRequest resolveMultipart(HttpServletRequest request) throws MultipartException {
+		// 获取到request,要用到session
+		this.request = request;
+		return super.resolveMultipart(request);
+	}
+
 	@Override
 	public MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
 		String encoding = determineEncoding(request);
 		FileUpload fileUpload = prepareFileUpload(encoding);
 		FileUploadProgressListener progressListener = new FileUploadProgressListener(session);
-		fileUpload.setProgressListener(progressListener);  
+		fileUpload.setProgressListener(progressListener);
 		try {
 			List<FileItem> fileItems = ((ServletFileUpload) fileUpload).parseRequest(request);
 			return parseFileItems(fileItems, encoding);
@@ -56,6 +53,5 @@ private HttpServletRequest request;
 			throw new MultipartException("Could not parse multipart servlet request", ex);
 		}
 	}
-
 
 }
