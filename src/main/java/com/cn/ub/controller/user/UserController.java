@@ -20,6 +20,7 @@ import com.cn.ub.common.MD5;
 import com.cn.ub.common.PageUtils;
 import com.cn.ub.common.UuidUtils;
 import com.cn.ub.entry.user.User;
+import com.cn.ub.service.user.UserCorrespondService;
 import com.cn.ub.service.user.UserService;
 import com.github.pagehelper.PageHelper;
 
@@ -31,6 +32,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserCorrespondService userCorrespondService;
 	
 	@RequestMapping(value="/index")
 	public String toIndex(HttpServletRequest request, HttpServletResponse response)throws Exception{

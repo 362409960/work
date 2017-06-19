@@ -80,3 +80,20 @@ CREATE TABLE `d_user` (
 -- ----------------------------
 INSERT INTO `d_user` VALUES ('1', 'admin', '63c0b6d314a64e60d675fac79e4d68be', '0', '0', null, null);
 SET FOREIGN_KEY_CHECKS=1;
+
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for d_user_correspond
+-- ----------------------------
+DROP TABLE IF EXISTS `d_user_correspond`;
+CREATE TABLE `d_user_correspond` (
+  `id` varchar(32) NOT NULL,
+  `user_u_id` varchar(32) DEFAULT NULL COMMENT '上传账号id',
+  `user_v_id` varchar(32) DEFAULT NULL COMMENT '查看用户id',
+  `state` varchar(10) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+SET FOREIGN_KEY_CHECKS=1;
+

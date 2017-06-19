@@ -50,7 +50,7 @@
 	<!-- 新增一条广告信息 -->
 	<insert id="save" parameterType="com.cn.ub.entry.user.User">
 		INSERT D_USER
-		(id,username,password,state,user_type,create_time)values(#{id},#{username},#{password},#{state},#{state},#{userType},now())
+		(id,username,password,state,user_type,create_time)values(#{id},#{username},#{password},#{state},#{userType},now())
 	</insert>
 	
 	<!-- 根据id，删除用户信息 -->

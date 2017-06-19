@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.ub.dao.user.UserCorrespondDAO">
+
+	<resultMap id="resultMap" type="com.cn.ub.entry.user.UserCorrespond">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="user_u_id" property="userUId" jdbcType="VARCHAR" />
+		<result column="user_v_id" property="userVId" jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		
+	</resultMap>
+
+	<!-- 更新用户 -->
+	<update id="update" parameterType="com.cn.ub.entry.user.User">
+		UPDATE d_user_correspond
+		<set>
+			<if test="null != state">
+				STATE = #{state},
+			</if>
+		</set>
+		WHERE ID = #{id}
+	</update>
+
+	<!-- 查询所有有效的用户 -->
+	<select id="getObjById" parameterType="java.lang.String" resultMap="resultMap">
+		select * from d_user_correspond where user_u_id = #{id} and STATE = '0'
+	</select>
+	
+
+	<!-- 新增一条广告信息 -->
+	<insert id="save" parameterType="com.cn.ub.entry.user.UserCorrespond">
+		INSERT d_user_correspond
+		(id,user_u_id,user_v_id,state)values(#{id},#{userUId},#{userVId},#{state})
+	</insert>
+	
+	<!-- 根据id，删除用户信息 -->
+   <delete id = "deleteById"  parameterType="string">
+            delete from  d_user_correspond  where id = #{id}
+   </delete>
+    
+
+
+</mapper>
