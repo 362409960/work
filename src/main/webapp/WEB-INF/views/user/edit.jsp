@@ -14,48 +14,37 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/static/css/color.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/css/main.css">
 
+<script type="text/javascript" src="${ctx}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/common_ex.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/jquery.loadmask.min.js"></script>  
+
 </head>
 
 <body>
 	<form id="mainform" action="${ctx}/user/edit" method="post" autocomplete="off" enctype="multipart/form-data">	
 		<div id="tt" class="easyui-tabs" style="height: 525px" data-options="border:false, fit:true">
-		  <input type="hidden" name="id" id="id" value="${productInfo.id}" /> 
-		  <input type="hidden" name="shopId" id="shopId" value="${productInfo.shopId}" /> 
-		  <input type="hidden" name="isStand" id="isStand" value="${productInfo.isStand}" /> 
+		  <input type="hidden" name="id" id="id" value="${user.id}" /> 
 			<div title="基本属性" id="send_datails" style="padding: 10px">
-
-
 				<div class="wrap">				 
 						<div class="form-control">
-							<label class="labelPad">商品名称:</label> 
-						 		<input id=productName name="productName"  value="${productInfo.productName}" maxlength="30"  type="text" class="easyui-validatebox inp" data-options="required:'required',validType:['specialCharacters','length[0,30]']" />
+							<label class="labelPad">用户名称:</label> 
+						 		<input id="username" name="username"  value="${uservo.username}" maxlength="30"  type="text" class="easyui-validatebox inp" data-options="required:'required',validType:['specialCharacters','length[0,30]']" />
 						</div>
 						<div class="form-control">
-							<label class="labelPad">行业分类:</label> 
-							 	<select id="sortId" name="sortId"	class="easyui-validatebox select" data-options="validType:'selectRequired[\'#sortId\']'" disabled="disabled" >
-								<option value="">请选择行业分类</option>
-								<c:forEach items="${productSortList}" var="it" varStatus="st">
+							<label class="labelPad">用户分类:</label> 
+							 	<select id="userType" name="userType"	class="easyui-validatebox select" data-options="validType:'selectRequired[\'#userType\']'" disabled="disabled" >
+								
 								    <c:choose>
-								       <c:when test="${productInfo.sortId eq it.id}"><option value="${it.id}" selected="selected">${it.sortName}</option></c:when>
-								       <c:otherwise><option value="${it.id}">${it.sortName}</option></c:otherwise> 
+								       <c:when test="${userType.userType eq '1'}"><option value="1" selected="selected">患者用户</option></c:when>
+								       <c:when test="${userType.userType eq '2'}"><option value="2" selected="selected">医务用户</option></c:when>
 								    </c:choose>
-								     
-								  </c:forEach>
 								</select>
 						</div>	 							
 						<div class="form-control">    
-                            <label class="labelPad">展示图片:</label>    
-	                        <div class="file clear-fix"> 
-	                          <div id="divPreview" class="upload" >
-	                              <img id="imgHeadPhoto" class="imgBox" src="${productInfo.picPath}"  >
-	                         
-	                          </div>
-	             
-	                       </div>
-	                       <a href="javascript:;" class="uploadFile aChoice"  style="margin: 10px  0 0 27px"> 选择文件
-	                          <input  type="file" name="file"  onchange="PreviewImage(this,'imgHeadPhoto','divPreview',true,300,300,true,2);"  id="file" class="easyui-validatebox inp">
-	                       </a>    
-	                       <div class="note imgMessage">限制尺寸300*300，文件大小需在2M以内，支持.jpg,.bmp,.gif,.png格式。</div>                                
+                             
                     </div>	
                    
 				</div>
@@ -70,24 +59,7 @@
 
 
 $(function(){
-	var disLabel=$('label[data-parent]'),
-		$table=$('.table-01'),
-		pLen=$('label[data-target]').length,
-		$tableList=$('.data-list'),		
-		$dataname=$('label[data-name]'),    
-		$tableTarget=$tableList.find('table');
 	
-	
-	//如果规格没有选中，规格明细为不可选择的
-	var parentLabel = $('label[data-target]');
-	$.each(parentLabel, function (key,value) {
-		var $that = $(this);
-		if(!$that.hasClass("checked")){
-			var $target=$that.data('target');
-			$('label[data-parent^='+$target+']').addClass('disabled')
-		}
-		
-	});
         
 	
 });
@@ -117,33 +89,7 @@ $('#mainform').form({
 				}
 
 			});
-//添加样式
-function addFieldClass(obj){		
-	//$(obj).addClass("easyui-validatebox");
-	//$(obj).attr('data-options','required:true,validType:\'integerzs\'')
-	var text=trim($(obj).val());
-	if(!/^[+]?[1-9]+\d*$/i.test(text)){
-		$(obj).val('');
-		psmaMessageShowOne("请输入正整数");
-	}
-	
-}	
 
-function addPriceClass(obj){
-	var text=trim($(obj).val());
-	if(!/^\d+(\.\d+)?$/i.test(text)){
-		$(obj).val('0.01');
-		psmaMessageShowOne("请输入数字，并确保格式正确");
-	}
-}
-
-function addStockClass(obj){
-	var text=trim($(obj).val());
-	if(!/^([1-9]\d*|[0]{1,1})$/.test(text)){
-		$(obj).val('0');
-		psmaMessageShowOne("请输入正整数");
-	}
-}
 </script>
 </body>
 </html>

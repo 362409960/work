@@ -26,6 +26,8 @@
 <script type="text/javascript" src="${ctx}/static/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/common_ex.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/jquery.loadmask.min.js"></script>   
 
 </head>
 <body style="font-family: '微软雅黑'">
@@ -77,7 +79,7 @@ $(function(){
 		{field:'username',title:'用户名称',sortable:true,width:'20%',formatter:function(value,row,index){   
             return '<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;display:inline-block;" title='+value+'>'+value+'</span>'  
         }},
-        {field:'userType',title:'用户类型',sortable:true,width:'20%',formatter:function(value,row,index){var isbest = row.userType;if('0'==isbest){return '超级管理员'}else if('1'==isbest){return '医务用户'}else{return '患者用户'}}  },  
+        {field:'userType',title:'用户类型',sortable:true,width:'20%',formatter:function(value,row,index){var isbest = row.userType;if('0'==isbest){return '超级管理员'}else if('1'==isbest){return '患者用户'}else{return '医务用户'}}  },  
         {field:'createTime',title:'创建时间',sortable:true,width:'20%',formatter: formatDatebox,editor: 'datebox'},    
         {field:'updateTime',title:'更新时间',sortable:true,width:'20%',formatter: formatDatebox,editor: 'datebox'}, 
          {field:'_operate',title:'操作',sortable:false,width:'20%',align:'center',

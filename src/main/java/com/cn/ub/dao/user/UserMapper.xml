@@ -33,6 +33,9 @@
 			<if test="null != updateTime">
 				upate_time = #{updateTime,jdbcType=TIMESTAMP},
 			</if>
+				<if test="null != password">
+				PASSWORD = #{password},
+			</if>
 		</set>
 		WHERE ID = #{id}
 	</update>
@@ -44,6 +47,10 @@
 	
 	<select id="getUser" parameterType="java.lang.String" resultMap="resultMap">
 		select * from D_USER where USERNAME = #{username} and STATE = '0'
+	</select>
+	
+	<select id="getUserList" parameterType="java.lang.String" resultMap="resultMap">
+		select * from D_USER where user_type = #{userType} and STATE = '0'
 	</select>
 
 
@@ -58,6 +65,42 @@
             update D_USER set disabled = '1'  where id = #{id}
    </update>
     
+    
+    <resultMap id="rMap" type="com.cn.ub.entry.user.UserVO">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="VARCHAR" />
+		<result column="user_u_id" property="userUId" jdbcType="VARCHAR" />
+		<result column="user_v_id" property="userVId" jdbcType="VARCHAR" />
+		<result column="userUpName" property="userUpName" jdbcType="VARCHAR" />
+		<result column="userViewName" property="userViewName" jdbcType="VARCHAR" />
+	</resultMap>
+    
+    <select id="getUserVO" parameterType="java.lang.String" resultMap="rMap">
+					SELECT
+				du.id,
+				du.username,
+				du.user_type,
+				duc.user_u_id,
+				duc.userUpName,
+				duc.user_v_id,
+				duc.userViewName
+			FROM
+				d_user du
+			LEFT JOIN (
+				SELECT
+					dc.id,
+					dc.user_u_id,
+					u1.username AS userUpName,
+					dc.user_v_id,
+					u2.username AS userViewName
+				FROM
+					d_user_correspond dc
+				LEFT JOIN d_user u1 ON u1.id = dc.user_u_id
+				LEFT JOIN d_user u2 ON u2.id = dc.user_v_id
+			) duc ON duc.user_u_id = du.id
+			WHERE du.id =#{id}
+	</select>
 
 
 </mapper>
