@@ -35,7 +35,7 @@
 	
 	<!-- 根据id，删除用户信息 -->
    <delete id = "deleteById"  parameterType="string">
-            delete from  d_user_correspond  where id = #{id}
+            delete from  d_user_correspond  where user_v_id = #{id}
    </delete>
     
 

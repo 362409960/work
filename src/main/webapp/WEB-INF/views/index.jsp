@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>图片系统</title>
+<title>医学影像系统</title>
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=11;IE=9;IE=10"> -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -48,6 +48,10 @@
     <table id="dg"></table>
 <script type="text/javascript" src="${ctx}/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/common_ex.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/jquery.loadmask.min.js"></script>   
 
 
 <script type="text/javascript">
@@ -62,7 +66,7 @@ $(function(){
 //修改密码
 var d;
 function updateUserPwd(){		
-	var url = '${ctx}/sys/toUpPwd';
+	var url = '${ctx}/user/toUpPwd';
 
         d= $("#dg").dialog({
             title:'修改密码',
@@ -88,6 +92,10 @@ function updateUserPwd(){
         });
     
   
+}
+
+function logout(){	
+	window.location.href ='${ctx}/toLogOut';	
 }
 </script>
 </body>

@@ -96,5 +96,11 @@ public class LoginController {
 
 		return "index";
 	}
+	@RequestMapping(value = "/toLogOut")
+	public String toLogOut(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		request.getSession().removeAttribute("user");
+		return "redirect:toLogin";
+	}
+	
 
 }

@@ -45,4 +45,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUser(username);
 	}
 
+	@Override
+	public List<User> getUserList(String userType) throws Exception {
+		
+		return userDAO.getUserList(userType);
+	}
+
 }

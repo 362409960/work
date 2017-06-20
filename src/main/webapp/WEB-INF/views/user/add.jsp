@@ -21,56 +21,78 @@
 <script type="text/javascript" src="${ctx}/static/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/common_ex.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/jquery.loadmask.min.js"></script>   
 </head>
 
 <body>
 	<form id="mainform" action="${ctx}/user/save" method="post" autocomplete="off" enctype="multipart/form-data">	
-		<div id="tt" class="easyui-tabs" style="height: 100%" data-options="border:false, fit:true">
-			<div title="编辑内容" id="send_datails" style="padding: 10px" data-options="onClose:onClose">
-				<div class="wrap">				
+		<div id="tt" class="easyui-tabs" style="height: 525px" data-options="border:false, fit:true">
+		 
+			<div title="基本属性" id="send_datails" style="padding: 10px">
+				<div class="wrap">				 
 						<div class="form-control">
 							<label class="labelPad">用户名称:</label> 
-						 		<input id = "username" name="username" type="text" maxlength="30"  class="easyui-validatebox inp"   data-options="required:'required',validType:['specialCharacters','length[0,30]']" />
-
+						 		<input id="username" name="username"  maxlength="30"  type="text" class="easyui-validatebox inp" data-options="required:'required',validType:['specialCharacters','length[0,30]']" />
 						</div>
 						<div class="form-control">
-							<label class="labelPad">用户类型:</label> 
-							  <select name="userType" id="userType" class="easyui-validatebox select" data-options="validType:'selectRequired[\'#sortId\']'" >							 
-								 <option value="">请选择用户类型</option>
-								 <option value="1">上传用户</option>
-								 <option value="2">查看用户</option>
-							</select>
-						</div>	
-						
-					<!-- <div class="form-control"> -->
-					
-				</div>
+							<label class="labelPad">用户分类:</label> 
+							 	<select id="userType" name="userType"	class="easyui-validatebox select" data-options="validType:'selectRequired[\'#userType\']'"  >
+								   <option value="">请选择用户分类</option>
+								   <option value="1">患者用户</option>
+								   <option value="2">医务用户</option>
+								</select>
+						</div>	 							
+						<div class="form-control"  id = "labelsq">    
+                             
+                    	</div>	
 				</div>
 			</div>
+		</div>
 
 	</form>
-
 <script type="text/javascript">		
 
 
 $(function() {
-	
+	$("#userType").combobox({
+		onChange: function (n,o) {
+			if("1" == n){
+				$.ajax({
+					type:'post',
+					url:"${ctx}/user/checkName",
+					data:{id:n},
+					success: function(data){
+						var html = "<label class=\"labelPad\">医务用户:</label> ";
+						var labelsq = $("#labelsq");
+						labelsq.html("");
+						html += "<select id=\"userUId\" name=\"userUId\"	class=\"easyui-validatebox select\" data-options=\"validType:\'selectRequired[\\'#userUId\\']'\"  >";
+						html += "<option value=\"\">请选择用户</option>";
+						$.each(data, function (i,item) {
+							html += "<option value="+item[0].id+">"+item[0].username+"</option>";
+						});
+						labelsq.html(html);
+					}
+				});
+			}
+			$.parser.parse('#labelsq');
+		}
+	});
 });
 var onSubmitFlag = false;
 //提交form表单
 $('#mainform').form({
 				onSubmit : function() {		
-					
 				var isValid = $(this).form('validate');		
-				var file = $("#file").val();	
-			if (isValid) {
-				if (onSubmitFlag == true) {
-					return false;
+				
+				if (isValid) {
+					if (onSubmitFlag == true) {
+						return false;
+					}
+					onSubmitFlag = true;
+					$(d).mask("正在提交数据...");
 				}
-				onSubmitFlag = true;
-				$(d).mask("正在提交数据...");
-			}
-			return isValid; // 返回false终止表单提交
+				return isValid; // 返回false终止表单提交
 
 		},
 		success : function(data) {
