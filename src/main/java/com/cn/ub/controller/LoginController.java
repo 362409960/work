@@ -88,7 +88,7 @@ public class LoginController {
 		    if ("0".equals(code)){
 		    	model.addAttribute("action", "/user/index");
 		    } else if ("1".equals(code)){
-		    	model.addAttribute("action", "/case/logIndex");
+		    	model.addAttribute("action", "/case/index");
 		    } else {
 		    	model.addAttribute("action", "/case/upIndex");
 		    }

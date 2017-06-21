@@ -72,7 +72,7 @@ public class UserUtilsServiceImpl implements UserUtilsService {
 	@Override
 	public UserVO getUserVO(String id) throws Exception {
 	
-		return null;
+		return userDAO.getUserVO(id);
 	}
 
 }

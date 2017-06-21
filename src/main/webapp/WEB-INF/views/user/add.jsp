@@ -67,7 +67,7 @@ $(function() {
 						var labelsq = $("#labelsq");
 						labelsq.html("");
 						html += "<select id=\"userUId\" name=\"userUId\"	class=\"easyui-validatebox select\" data-options=\"validType:\'selectRequired[\\'#userUId\\']'\"  >";
-						html += "<option value=\"\">请选择用户</option>";
+						
 						$.each(data, function (i,item) {
 							html += "<option value="+item[0].id+">"+item[0].username+"</option>";
 						});

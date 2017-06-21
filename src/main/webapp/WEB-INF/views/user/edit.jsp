@@ -26,7 +26,7 @@
 <body>
 	<form id="mainform" action="${ctx}/user/edit" method="post" autocomplete="off" enctype="multipart/form-data">	
 		<div id="tt" class="easyui-tabs" style="height: 525px" data-options="border:false, fit:true">
-		  <input type="hidden" name="id" id="id" value="${user.id}" /> 
+		  <input type="hidden" name="id" id="id" value="${uservo.id}" /> 
 			<div title="基本属性" id="send_datails" style="padding: 10px">
 				<div class="wrap">				 
 						<div class="form-control">
@@ -38,13 +38,23 @@
 							 	<select id="userType" name="userType"	class="easyui-validatebox select" data-options="validType:'selectRequired[\'#userType\']'" disabled="disabled" >
 								
 								    <c:choose>
-								       <c:when test="${userType.userType eq '1'}"><option value="1" selected="selected">患者用户</option></c:when>
-								       <c:when test="${userType.userType eq '2'}"><option value="2" selected="selected">医务用户</option></c:when>
+								       <c:when test="${uservo.userType eq '1'}"><option value="1" selected="selected">患者用户</option></c:when>
+								       <c:when test="${uservo.userType eq '2'}"><option value="2" selected="selected">医务用户</option></c:when>
 								    </c:choose>
 								</select>
 						</div>	 							
 						<div class="form-control">    
-                             
+                             <c:if test="${uservo.userType eq '1'}">
+                             <label class="labelPad">医务用户:</label> 
+                             <select id="userUId" name="userUId"	class="easyui-validatebox select" data-options="validType:'selectRequired[\'#userUId\']'"  >
+                                   <c:forEach items="${userList}" var="it" varStatus="st">
+                                      <c:choose>
+                                         <c:when test="${it.username eq uservo.username}"><option value="${uservo.id}" selected="selected">${uservo.username}</option></c:when>
+                                         <c:otherwise><option value="${it.id}" selected="selected">${it.username}</option></c:otherwise>
+                                      </c:choose>
+                                   </c:forEach>
+                                   </select>
+                             </c:if>
                     </div>	
                    
 				</div>
@@ -56,14 +66,6 @@
 	</form>
 
 <script type="text/javascript">		
-
-
-$(function(){
-	
-        
-	
-});
-
 
 //提交form表单
 $('#mainform').form({

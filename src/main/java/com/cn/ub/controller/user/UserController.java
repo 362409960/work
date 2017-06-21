@@ -116,7 +116,9 @@ public class UserController {
 	public String toEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 			@RequestParam(value = "id") String id) throws Exception {
 		UserVO uservo = userUtilsService.getUserVO(id);
+		List<User> userList = userService.getUserList("2");
 		model.addAttribute("uservo", uservo);
+		model.addAttribute("userList", userList);
 		return "user/edit";
 	}
 
