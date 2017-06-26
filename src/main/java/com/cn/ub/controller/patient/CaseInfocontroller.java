@@ -1,6 +1,5 @@
 package com.cn.ub.controller.patient;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cn.ub.common.PageUtils;
 import com.cn.ub.entry.patient.CaseInfo;
 import com.cn.ub.entry.user.User;
-import com.cn.ub.entry.user.UserVO;
+
 import com.cn.ub.service.patient.CaseInfoService;
 import com.cn.ub.service.patient.PatientPictureSevice;
 import com.github.pagehelper.PageHelper;
@@ -71,7 +70,7 @@ public class CaseInfocontroller {
 	@RequestMapping(value = "/create")
 	public String toAdd(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 
-		return "user/add";
+		return "case/add";
 	}
 
 	/**
@@ -107,7 +106,7 @@ public class CaseInfocontroller {
 	public String toEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 			@RequestParam(value = "id") String id) throws Exception {
 	
-		return "user/edit";
+		return "case/edit";
 	}
 
 	/**

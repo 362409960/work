@@ -74,6 +74,10 @@ public class CaseInfo implements Serializable{
 	private String startTime;
 	
 	private String endDate;
+	/**
+	 * 图片总数
+	 */
+	private Integer countPic;
 	
 	public String getId() {
 		return id;
@@ -176,6 +180,12 @@ public class CaseInfo implements Serializable{
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+	public Integer getCountPic() {
+		return countPic;
+	}
+	public void setCountPic(Integer countPic) {
+		this.countPic = countPic;
 	}
 	
 	

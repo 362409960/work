@@ -50,7 +50,7 @@ var d;
 $(function(){   
 	dg=$('#dg').datagrid({    
 	method: "post",
-    url:'${ctx}/productInfo/list', 
+    url:'${ctx}/case/list', 
     fit : true,
 	fitColumns : true,
 	border : false,
@@ -68,11 +68,13 @@ $(function(){
 	 maximizable:false,
 	 sortExpertMode:false,
     columns:[[    
-		{field:'productName',title:'商品名称',sortable:true,width:'10%',formatter:function(value,row,index){   
+		{field:'patientName',title:'病人名称',sortable:true,width:'10%',formatter:function(value,row,index){   
             return '<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:98%;display:inline-block;" title='+value+'>'+value+'</span>'  
         }},
-		{field:'miniPicUrl',title:'图片',sortable:true,width:'10%',formatter:function(value,row,index){return '<img src="'+row.miniPicUrl+'" style="vertical-align:middle;"  width="50" height="60"/>';}},
-		
+        {field:'patinetNo',title:'病人号',sortable:true,width:'10%'},
+        {field:'hospital',title:'医院',sortable:true,width:'10%'},
+        {field:'hospitalNo',title:'住院号',sortable:true,width:'10%'},
+        {field:'checkParts',title:'检查部位',sortable:true,width:'10%'},
         {field:'price',title:'价格',sortable:true,width:'10%', formatter:function(val,rowData,rowIndex){
             if(val!=null)
                 return val.toFixed(2);
