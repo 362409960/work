@@ -1,6 +1,8 @@
 package com.cn.ub.controller.patient;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.ub.common.PageUtils;
 import com.cn.ub.entry.patient.CaseInfo;
-import com.cn.ub.entry.user.User;
+
 
 import com.cn.ub.service.patient.CaseInfoService;
 import com.cn.ub.service.patient.PatientPictureSevice;
@@ -45,14 +47,14 @@ public class CaseInfocontroller {
 	 */
 	@RequestMapping(value="/list")
 	@ResponseBody
-	public PageUtils<User> list(@RequestParam(value = "page", defaultValue = "0") int pageNumber,
+	public PageUtils<CaseInfo> list(@RequestParam(value = "page", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "rows", defaultValue = "10") int pageSize, CaseInfo caseInfo,
 			HttpServletRequest request,HttpServletResponse response) {		
 		try {
 			PageHelper.startPage(pageNumber, pageSize, true);
-			
-			//PageUtils<User> page = new PageUtils<User>();
-			//return page;
+			List<CaseInfo> info = caseInfoService.getList(caseInfo);
+			PageUtils<CaseInfo> page = new PageUtils<CaseInfo>(info);
+			return page;
 		} catch (Exception e) {
 			
 		}

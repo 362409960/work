@@ -97,3 +97,13 @@ CREATE TABLE `d_user_correspond` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET FOREIGN_KEY_CHECKS=1;
 
+DROP TABLE IF EXISTS `d_pic_info`;
+CREATE TABLE `d_pic_info` (
+  `id` varchar(32) NOT NULL,
+  `pic_path` varchar(500) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `disabled` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
