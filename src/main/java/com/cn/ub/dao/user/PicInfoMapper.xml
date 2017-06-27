@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.ub.dao.user.PicInfoDAO">
+
+
+	 <insert id="save" parameterType="map">
+	  INSERT INTO d_pic_info
+			 (
+			  `id`,`pic_path`,create_time,disabled
+			 )
+			VALUES 
+			(
+			    #{id},#{picPath},#{createTime},#{disabled}
+		)
+   </insert>
+   
+   <delete id="delete"  >
+   		UPDATE d_pic_info sys SET sys.disabled = 1  WHERE  id in 
+	   	 <foreach collection="ids" item="element" open="(" close=")" separator=",">
+     		#{element}
+     	</foreach>
+   </delete>
+    <delete id="deleteById"  >
+        UPDATE d_pic_info sys SET sys.disabled = 1  WHERE  id = #{id} 
+   </delete>     
+    <select id="getPicName" parameterType="java.lang.String" resultType="java.lang.String">
+        select pic_path from d_pic_info  where id=#{picId} and disabled !='1'
+    </select>
+</mapper>
+   
