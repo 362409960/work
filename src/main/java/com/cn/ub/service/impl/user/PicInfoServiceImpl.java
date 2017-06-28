@@ -1,3 +1,4 @@
+
 package com.cn.ub.service.impl.user;
 
 
@@ -26,7 +27,7 @@ import com.qiniu.common.QiniuException;
 
 public class PicInfoServiceImpl implements PicInfoService {
 
-	//记录log	 
+	    //记录log	 
 		private  final Logger logger = LoggerFactory.getLogger(PicInfoServiceImpl.class);
 		
 		@Autowired
@@ -43,29 +44,24 @@ public class PicInfoServiceImpl implements PicInfoService {
 		private String qiniuSecretKey;
 		  
 		
-		@Value("${qiniu_product_pic_space}")
+		@Value("${qiniu_pic_space}")
 		//商品图片空间
 		private String qiniuProductPicSpace;
 		  
-		@Value("${qiniu_sys_pic_space}")
-		//其他图片空间
-		private String qiniuSysPicSpace;
-		  
 		
-		@Value("${qiniu_product_pic_url}")
+		
+		@Value("${qiniu_pic_url}")
 		//商品图片访问域名
 		private String qiniuProductPicUrl;
 		  
-		@Value("${qiniu_sys_pic_url}")
-		//系统图片访问域名
-		private String qiniuSysPicUrl;
+	
 		
 		
 		 
 		
 		
 		/**
-		  * @copyright：丰巨泰科
+		
 		  * @version V1.0  
 		  * @Title: save  
 		  * @Description: 保存图片,返回图片id集合
@@ -87,7 +83,7 @@ public class PicInfoServiceImpl implements PicInfoService {
 		}
 		
 		/**
-		  * @copyright：丰巨泰科
+		 
 		  * @version V1.0  
 		  * @Title: save  
 		  * @Description: 保存图片
@@ -122,7 +118,7 @@ public class PicInfoServiceImpl implements PicInfoService {
 		}
 		
 		/**
-		  * @copyright：丰巨泰科
+		
 		  * @version V1.0  
 		  * @Title: delete  
 		  * @Description: 假删除把状态改成不能使用状态
@@ -136,7 +132,7 @@ public class PicInfoServiceImpl implements PicInfoService {
 		}
 		
 		/**
-		  * @copyright：丰巨泰科
+		  
 		  * @version V1.0  
 		  * @Title: upLoad  
 		  * @Description: 根据文件路径和工作空间上传文件到七牛
@@ -171,7 +167,7 @@ public class PicInfoServiceImpl implements PicInfoService {
 		
 		
 		/**
-		  * @copyright：丰巨泰科
+		  
 		  * @version V1.0  
 		  * @Title: upLoadImgFiles  
 		  * @Description: 上传多个文件
@@ -219,7 +215,7 @@ public class PicInfoServiceImpl implements PicInfoService {
 		}
 		
 		/**
-		  * @copyright：丰巨泰科
+		
 		  * @version V1.0  
 		  * @Title: upLoadImgFile  
 		  * @Description: 上传单个图片，并返回图片id
@@ -297,11 +293,7 @@ public class PicInfoServiceImpl implements PicInfoService {
 				//商品图片空间
 				uploadSpace = qiniuProductPicSpace;
 				accessUrl = qiniuProductPicUrl;
-			}else if("2".equals(funType)){
-				//其他图片空间
-				uploadSpace = qiniuSysPicSpace;
-				accessUrl = qiniuSysPicUrl;
-			} 
+			}
 			if(StringUtils.isNotEmpty(uploadSpace)){
 				try {
 					String token = QiniuUtil.getToken(qiniuAccessKey, qiniuSecretKey, uploadSpace);
@@ -316,6 +308,5 @@ public class PicInfoServiceImpl implements PicInfoService {
 			}
 			return configMap;
 		}
-
-
 }
+
