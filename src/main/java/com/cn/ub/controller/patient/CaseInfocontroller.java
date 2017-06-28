@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.ub.common.PageUtils;
 import com.cn.ub.entry.patient.CaseInfo;
-
-
+import com.cn.ub.entry.patient.PatientPicture;
 import com.cn.ub.service.patient.CaseInfoService;
 import com.cn.ub.service.patient.PatientPictureSevice;
 import com.github.pagehelper.PageHelper;
@@ -33,7 +32,7 @@ public class CaseInfocontroller {
 	
 	@RequestMapping(value="/index")
 	public String toIndex(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		return "/case/list";
+		return "case/list";
 	}
 	
 	/**
@@ -86,7 +85,7 @@ public class CaseInfocontroller {
 	@ResponseBody
 	public String saveProductInfo(CaseInfo caseInfo, HttpServletRequest request, HttpServletResponse response) {
 		try {
-			
+			caseInfoService.save(caseInfo);
 		
 		} catch (Exception e) {
 
@@ -107,6 +106,11 @@ public class CaseInfocontroller {
 	@RequestMapping(value = "/toEdit")
 	public String toEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 			@RequestParam(value = "id") String id) throws Exception {
+		
+		 CaseInfo caseInfo = caseInfoService.getObjById(id);
+		 List<PatientPicture> patiList = patientPictureSevice.getPIcList(id);
+		 model.addAttribute("caseInfo", caseInfo);
+		 model.addAttribute("patiList", patiList);
 	
 		return "case/edit";
 	}
@@ -121,7 +125,7 @@ public class CaseInfocontroller {
 	@ResponseBody
 	public String editProductInfo(CaseInfo caseInfo, HttpServletRequest request) {
 		try {
-		
+		caseInfoService.update(caseInfo);;
 		} catch (Exception e) {
 			return "failure";
 		}
@@ -136,7 +140,7 @@ public class CaseInfocontroller {
 	@ResponseBody
 	public String deleteProductInfo(@RequestParam(value = "id") String id) {		
 		try {
-			
+			caseInfoService.deleteById(id);
 		} catch (Exception e) {
 			
 			return "failure";

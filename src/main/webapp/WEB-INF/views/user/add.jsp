@@ -61,17 +61,23 @@ $(function() {
 				$.ajax({
 					type:'post',
 					url:"${ctx}/user/checkName",
-					data:{id:n},
+					data:{id:2},
 					success: function(data){
-						var html = "<label class=\"labelPad\">医务用户:</label> ";
-						var labelsq = $("#labelsq");
-						labelsq.html("");
-						html += "<select id=\"userUId\" name=\"userUId\"	class=\"easyui-validatebox select\" data-options=\"validType:\'selectRequired[\\'#userUId\\']'\"  >";
+						if (data.user == false){
+							$("#userType").empty(); 
+							psmaMessageShowOne("没有医务用户");
+						} else{
+							var html = "<label class=\"labelPad\">医务用户:</label> ";
+							var labelsq = $("#labelsq");
+							labelsq.html("");
+							html += "<select id=\"userUId\" name=\"userUId\"	class=\"easyui-validatebox select\" data-options=\"validType:\'selectRequired[\\'#userUId\\']'\"  >";
+							
+							$.each(data, function (i,item) {
+								html += "<option value="+item[0].id+">"+item[0].username+"</option>";
+							});
+							labelsq.html(html);
+						}
 						
-						$.each(data, function (i,item) {
-							html += "<option value="+item[0].id+">"+item[0].username+"</option>";
-						});
-						labelsq.html(html);
 					}
 				});
 			}

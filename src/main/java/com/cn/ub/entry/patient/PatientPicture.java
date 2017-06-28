@@ -3,6 +3,8 @@ package com.cn.ub.entry.patient;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PatientPicture implements Serializable{
 
 	/**
@@ -22,6 +24,10 @@ public class PatientPicture implements Serializable{
 	private Date createTime;
 	
 	private Date updatetime;
+	
+	private String fUrl;
+	
+	private MultipartFile picFile;
 
 	public String getId() {
 		return id;
@@ -69,6 +75,22 @@ public class PatientPicture implements Serializable{
 
 	public void setUpdatetime(Date updatetime) {
 		this.updatetime = updatetime;
+	}
+
+	public MultipartFile getPicFile() {
+		return picFile;
+	}
+
+	public void setPicFile(MultipartFile picFile) {
+		this.picFile = picFile;
+	}
+
+	public String getfUrl() {
+		return fUrl;
+	}
+
+	public void setfUrl(String fUrl) {
+		this.fUrl = fUrl;
 	}
 	
 	

@@ -20,6 +20,7 @@
 <script type="text/javascript" src="${ctx}/static/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/common_ex.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/jquery.loadmask.min.js"></script>  
+<script type="text/javascript" src="${ctx}/static/js/My97DatePicker/WdatePicker.js"></script> 
 
 </head>
 

@@ -41,7 +41,7 @@ public class UserController {
 	
 	@RequestMapping(value="/index")
 	public String toIndex(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		return "/user/list";
+		return "user/list";
 	}
 	
 	/**

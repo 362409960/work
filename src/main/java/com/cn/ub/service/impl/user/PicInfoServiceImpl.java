@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -24,7 +25,7 @@ import com.cn.ub.dao.user.PicInfoDAO;
 import com.cn.ub.entry.user.PicInfo;
 import com.cn.ub.service.user.PicInfoService;
 import com.qiniu.common.QiniuException;
-
+@Service
 public class PicInfoServiceImpl implements PicInfoService {
 
 	    //记录log	 

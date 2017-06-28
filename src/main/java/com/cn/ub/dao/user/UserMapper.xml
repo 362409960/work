@@ -62,7 +62,7 @@
 	
 	<!-- 根据id，删除用户信息 -->
    <update id = "deleteById"  parameterType="string">
-            update D_USER set disabled = '1'  where id = #{id}
+            update D_USER set state = '1'  where id = #{id}
    </update>
     
     

@@ -9,7 +9,7 @@
 		<result column="state" property="state" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_time" property="updatetime" jdbcType="TIMESTAMP" />
-		
+		<result column="pic_path" property="fUrl" jdbcType="VARCHAR" />
 	</resultMap>
 
 
@@ -27,10 +27,22 @@
 	
 
 	<select id="getObjById" parameterType="java.lang.String" resultType="com.cn.ub.entry.patient.PatientPicture">
-		select * from d_patient_picture where case_id = #{id} 
+		select * from d_patient_picture where id = #{id} 
 	</select>
 
 
+	<select id="getPIcList" parameterType="java.lang.String" resultMap="resultMap">
+		SELECT dp.id,dp.pic_id,dp.case_id,dp.state,dpi.pic_path from d_patient_picture dp LEFT JOIN d_pic_info dpi ON dp.pic_id = dpi.id
+		 where dp.case_id = #{id} 
+	</select>
+
+	<!-- 根据map查询 -->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="resultMap">
+		SELECT * FROM d_patient_picture where case_id = #{pouductId} and id  not in 
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+			#{item}
+		</foreach>
+	</select>
 	
 	<insert id="save" parameterType="com.cn.ub.entry.patient.PatientPicture">
 		INSERT d_patient_picture
@@ -41,7 +53,14 @@
    <delete id = "deleteById"  parameterType="string">
             delete d_patient_picture  where case_id = #{id}
    </delete>
-    
+    <!-- 根据id批量删除 -->
+	<delete id="deleteByIds" parameterType="java.util.Map">
+		DELETE FROM d_patient_picture WHERE case_id = #{pouductId} and id not in  
+       	<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+			#{item}
+		</foreach>
+	</delete>
+	
 
 
 </mapper>

@@ -78,7 +78,7 @@
 	<insert id="save" parameterType="com.cn.ub.entry.patient.CaseInfo">
 		INSERT d_case_info
 		(id,patient_name,patinet_no,hospital,hospital_no,check_parts,check_type,clinic_number,report_doctor,report_state,age,sex,check_time,report_time,application_time)values
-		(#{id},#{patientName},#{patinetNo},#{hospital},#{hospitalNo},#{checkParts},#{checkType},#{clinicNumber},#{reportDoctor},#{reportState},#{age},#{sex},#{checkTime},#{reportTime},#{applicationTime})
+		(#{id},#{patientName},#{patinetNo},#{hospital},#{hospitalNo},#{checkParts},#{checkType},#{clinicNumber},#{reportDoctor},#{reportState},#{age},#{sex},#{checkTime,jdbcType=TIMESTAMP},#{reportTime,jdbcType=TIMESTAMP},#{applicationTime,jdbcType=TIMESTAMP})
 	</insert>
 	
 	<!-- 根据id，删除用户信息 -->

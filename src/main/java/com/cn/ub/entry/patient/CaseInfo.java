@@ -1,6 +1,8 @@
 package com.cn.ub.entry.patient;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CaseInfo implements Serializable{
@@ -79,6 +81,16 @@ public class CaseInfo implements Serializable{
 	 */
 	private Integer countPic;
 	
+	private PatientPicture [] picId;
+	
+	private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	private String checkTimeIng;
+	
+	private String reportTimeIng;
+	
+	private String applicationTimeIng;
+	
 	public String getId() {
 		return id;
 	}
@@ -155,18 +167,21 @@ public class CaseInfo implements Serializable{
 		return checkTime;
 	}
 	public void setCheckTime(Date checkTime) {
+		this.checkTimeIng = dateFormat.format(checkTimeIng);
 		this.checkTime = checkTime;
 	}
 	public Date getReportTime() {
 		return reportTime;
 	}
 	public void setReportTime(Date reportTime) {
+		this.reportTimeIng = dateFormat.format(reportTime);
 		this.reportTime = reportTime;
 	}
 	public Date getApplicationTime() {
 		return applicationTime;
 	}
 	public void setApplicationTime(Date applicationTime) {
+		this.applicationTimeIng = dateFormat.format(applicationTime);
 		this.applicationTime = applicationTime;
 	}
 	public String getStartTime() {
@@ -186,6 +201,36 @@ public class CaseInfo implements Serializable{
 	}
 	public void setCountPic(Integer countPic) {
 		this.countPic = countPic;
+	}
+	public PatientPicture[] getPicId() {
+		return picId;
+	}
+	public void setPicId(PatientPicture[] picId) {
+		this.picId = picId;
+	}
+	public DateFormat getDateFormat() {
+		return dateFormat;
+	}
+	public void setDateFormat(DateFormat dateFormat) {
+		this.dateFormat = dateFormat;
+	}
+	public String getCheckTimeIng() {
+		return checkTimeIng;
+	}
+	public void setCheckTimeIng(String checkTimeIng) {
+		this.checkTimeIng = checkTimeIng;
+	}
+	public String getReportTimeIng() {
+		return reportTimeIng;
+	}
+	public void setReportTimeIng(String reportTimeIng) {
+		this.reportTimeIng = reportTimeIng;
+	}
+	public String getApplicationTimeIng() {
+		return applicationTimeIng;
+	}
+	public void setApplicationTimeIng(String applicationTimeIng) {
+		this.applicationTimeIng = applicationTimeIng;
 	}
 	
 	
