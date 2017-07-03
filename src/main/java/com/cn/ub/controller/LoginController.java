@@ -90,7 +90,7 @@ public class LoginController {
 		    } else if ("1".equals(code)){
 		    	model.addAttribute("action", "/case/index");
 		    } else {
-		    	model.addAttribute("action", "/case/upIndex");
+		    	model.addAttribute("action", "/info/index");
 		    }
 		     
 

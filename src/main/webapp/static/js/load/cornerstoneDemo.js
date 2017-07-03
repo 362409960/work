@@ -11,7 +11,7 @@ loadTemplate(contextPath+"/static/html/studyViewer.html", function(element) {
 });
 //var url = contextPath + '/info/studyList';
 
-var url = contextPath + '/static/json/studyList.json';
+var url = contextPath + '/info/studyList';
 
 // Get study list from JSON manifest
 $.getJSON(url, function(data) {
@@ -63,7 +63,7 @@ $.getJSON(url, function(data) {
       // Now load the study.json
       //处理图片展示方法，json。图片可以查看
       //var jsonUrl = contextPath + '/info/mrstudyList?studyId ='+study.studyId;
-      var jsonUrl = contextPath + '/static/json/' + study.studyId +'.json'
+      var jsonUrl = contextPath + '/info/mrstudyList?studyId=' + study.studyId ;
       loadStudy(studyViewerCopy, viewportTemplate, jsonUrl);
     });
   });
